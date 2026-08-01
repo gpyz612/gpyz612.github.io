@@ -1,14 +1,14 @@
 {
   "id": "/",
-  "name": "2024届612班纪念网站",
+  "name": "高平一中612班纪念网站",
   "short_name": "612班",
-  "description": "保存2024届612班共同走过的校园时光，也记录毕业后的我们。",
+  "description": "保存高平一中2024届612班共同走过的校园时光，也记录毕业后的我们。",
   "lang": "zh-CN",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#fffdf7",
-  "theme_color": "#376d5a",
+  "background_color": "#f8fbfa",
+  "theme_color": "#156b70",
   "categories": ["education", "social"],
   "icons": [
     {
