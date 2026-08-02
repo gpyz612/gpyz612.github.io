@@ -4,11 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "predev": "npm run articles:import",
+    "predev": "npm run articles:import && npm run speed:generate",
     "dev": "astro dev",
-    "prebuild": "npm run articles:import",
+    "prebuild": "npm run articles:import && npm run speed:generate",
     "build": "astro build && node scripts/build-pwa.mjs",
-    "prebuild:protected": "npm run articles:import",
+    "prebuild:protected": "npm run articles:import && npm run speed:generate",
     "build:protected": "astro build && node scripts/encrypt-font.mjs && node scripts/build-pwa.mjs",
     "preview": "astro preview",
     "articles:download": "node scripts/download-gzhh-images.mjs",
@@ -16,7 +16,8 @@
     "articles:localize": "node scripts/run-localize-gzhh.mjs",
     "articles:validate": "node scripts/validate-localized-articles.mjs",
     "search:key": "node --env-file-if-exists=.env --env-file-if-exists=.env.local scripts/create-typesense-search-key.mjs",
-    "search:sync": "node --env-file-if-exists=.env --env-file-if-exists=.env.local --import tsx scripts/sync-typesense.ts"
+    "search:sync": "node --env-file-if-exists=.env --env-file-if-exists=.env.local --import tsx scripts/sync-typesense.ts",
+    "speed:generate": "node scripts/generate-speed-files.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
