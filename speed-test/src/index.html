@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f7f6" />
+    <meta name="description" content="测试 Cloudflare Pages、Netlify 与 Vercel 三条线路的延迟、抖动和下载速度。" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>线路测速 · 2024612</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#results">跳到测速结果</a>
+    <main>
+      <header class="masthead">
+        <a class="brand" href="/" aria-label="2024612 线路测速首页">
+          <span class="brand-mark" aria-hidden="true">T</span>
+          <span>2024612 / NETWORK LAB</span>
+        </a>
+        <div class="connection-state" id="connectionState">
+          <span class="state-dot" aria-hidden="true"></span>
+          <span>等待测试</span>
+        </div>
+      </header>
+
+      <section class="hero" aria-labelledby="pageTitle">
+        <div class="hero-copy">
+          <p class="eyebrow">从你的位置出发</p>
+          <h1 id="pageTitle">哪条线路<br />离你更近？</h1>
+          <p class="lede">同时比较三家边缘网络。结果来自当前设备与网络，仅代表此刻的连接质量。</p>
+
+          <div class="controls" aria-label="测速设置">
+            <label class="mode-control" for="testMode">
+              <span>测试强度</span>
+              <select id="testMode">
+                <option value="quick">快速 · 约 3 MB</option>
+                <option value="standard" selected>标准 · 约 12 MB</option>
+              </select>
+            </label>
+            <button class="start-button" id="startTest" type="button">
+              <span>开始测速</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+          <p class="test-note" id="testNote">标准测试将下载约 12 MB 数据，不会上传文件。</p>
+        </div>
+
+        <div class="route-board" aria-label="测速线路示意图">
+          <div class="route-origin">
+            <span class="origin-pulse" aria-hidden="true"></span>
+            <strong>YOU</strong>
+            <small>当前设备</small>
+          </div>
+          <div class="route-lines" aria-hidden="true">
+            <span class="route-line route-cf"></span>
+            <span class="route-line route-netlify"></span>
+            <span class="route-line route-vercel"></span>
+          </div>
+          <div class="route-destinations">
+            <div class="route-destination" data-route="cloudflare"><span>CF</span><strong>Cloudflare</strong><small>ww3.2024612.xyz</small></div>
+            <div class="route-destination" data-route="netlify"><span>NT</span><strong>Netlify</strong><small>ww2.2024612.xyz</small></div>
+            <div class="route-destination" data-route="vercel"><span>VC</span><strong>Vercel</strong><small>ww1.2024612.xyz</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="results-section" id="results" aria-labelledby="resultsTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">实时测量</p>
+            <h2 id="resultsTitle">线路报告</h2>
+          </div>
+          <p id="summaryText">点击“开始测速”获取当前网络结果。</p>
+        </div>
+
+        <div class="result-grid" id="resultGrid" aria-live="polite"></div>
+
+        <div class="method-strip">
+          <div><span>延迟</span><strong>5 次小文件往返的中位数</strong></div>
+          <div><span>抖动</span><strong>相邻延迟变化的平均值</strong></div>
+          <div><span>下载</span><strong>浏览器读取边缘静态文件的速度</strong></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>t.2024612.xyz</span>
+      <span>测速会消耗少量流量 · 结果不保存</span>
+    </footer>
+
+    <template id="resultCardTemplate">
+      <article class="result-card">
+        <div class="card-topline">
+          <div>
+            <span class="provider-code"></span>
+            <h3></h3>
+          </div>
+          <span class="status-badge">未测试</span>
+        </div>
+        <div class="primary-metric">
+          <span class="speed-value">—</span>
+          <span class="speed-unit">Mbps</span>
+        </div>
+        <div class="progress-track" aria-hidden="true"><span></span></div>
+        <dl>
+          <div><dt>延迟</dt><dd class="latency-value">—</dd></div>
+          <div><dt>抖动</dt><dd class="jitter-value">—</dd></div>
+          <div><dt>成功率</dt><dd class="success-value">—</dd></div>
+        </dl>
+        <p class="card-message">等待开始</p>
+      </article>
+    </template>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

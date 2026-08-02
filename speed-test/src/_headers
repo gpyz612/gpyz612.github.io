@@ -1,0 +1,10 @@
+/probe.txt
+  Access-Control-Allow-Origin: *
+  Timing-Allow-Origin: *
+  Cache-Control: no-store, max-age=0
+
+/__speed/*
+  Access-Control-Allow-Origin: *
+  Timing-Allow-Origin: *
+  Cache-Control: public, max-age=31536000, immutable
+

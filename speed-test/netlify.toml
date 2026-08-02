@@ -1,0 +1,17 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[headers]]
+  for = "/probe.txt"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Timing-Allow-Origin = "*"
+    Cache-Control = "no-store, max-age=0"
+
+[[headers]]
+  for = "/__speed/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Timing-Allow-Origin = "*"
+    Cache-Control = "public, max-age=31536000, immutable"
